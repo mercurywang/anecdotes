@@ -1,7 +1,7 @@
 ## clone
 
 ```
-git clone git@github.com:mercurywang/redux-anecdotes.git
+git clone git@github.com:mercurywang/anecdotes.git
 ```
 
 ## install
