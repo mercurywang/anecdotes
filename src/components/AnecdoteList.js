@@ -6,9 +6,12 @@ import {
 } from '../reducers/notificationReducer'
 
 const AnecdoteList = () => {
-  const anecdotes = useSelector((state) => {
-    const copy = [...state.anecdotes]
-    return copy.sort((a, b) => b.votes - a.votes)
+  const anecdotes = useSelector(({ filters, anecdotes }) => {
+    if (!filters) {
+      const copy = [...anecdotes]
+      return copy.sort((a, b) => b.votes - a.votes)
+    }
+    return anecdotes.filter((anecdote) => anecdote.content.includes(filters))
   })
   const dispatch = useDispatch()
 
