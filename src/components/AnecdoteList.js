@@ -8,8 +8,7 @@ import {
 const AnecdoteList = () => {
   const anecdotes = useSelector(({ filters, anecdotes }) => {
     if (!filters) {
-      const copy = [...anecdotes]
-      return copy.sort((a, b) => b.votes - a.votes)
+      return anecdotes
     }
     return anecdotes.filter((anecdote) => anecdote.content.includes(filters))
   })
@@ -22,9 +21,14 @@ const AnecdoteList = () => {
     setTimeout(() => dispatch(clearNotification()), 5000)
   }
 
+  const sorted = () => {
+    const copy = [...anecdotes]
+    return copy.sort((a, b) => b.votes - a.votes)
+  }
+
   return (
     <div>
-      {anecdotes.map((anecdote) => (
+      {sorted().map((anecdote) => (
         <div key={anecdote.id}>
           <div>{anecdote.content}</div>
           <div>
